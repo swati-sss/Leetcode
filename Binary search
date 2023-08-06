@@ -1,0 +1,15 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        start = 0
+        end = len(nums)-1
+        
+        def search2(nums, target, start, end):
+            if start > end:
+                return -1
+            m = start + (end-start)//2
+            if target == nums[m]:
+                return m
+            if target < nums[m]:
+                return search2(nums, target, start, m-1)
+            return search2(nums, target, m+1, end)
+        return search2(nums, target, start, end)
